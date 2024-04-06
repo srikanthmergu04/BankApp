@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Beneficiary List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            height: auto;
+        }
+        center {
+            margin-top: 50px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #ddd;
+        }
+        input[type="text"], input[type="password"], input[type="submit"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+<center>
+    <h1>Beneficiary List</h1>
+    <form action="fundTransfer">
+        <table>
+            <tr>
+                <th>Select</th>
+                <th>A/C No</th>
+                <th>Name</th>
+            </tr>
+            <tr th:each="customer : ${BeneficiaryList}">
+                <td><input type="radio" name="acNo2" th:value="${customer.acNo}"></td>
+                <td th:text="${customer.acNo}"></td>
+                <td th:text="${customer.name}"></td>
+            </tr>
+        </table>
+        <br><br>
+        <input type="hidden" name="acNo1" th:value="${acNum}"><br><br>
+        Enter Amount : <input type="text" name="amount"><br><br>
+        Enter your pin : <input type="password" name="pin"> <br> <br>
+        <input type="submit" value="Transfer">
+    </form>
+    <br><br>
+    <form action="index.html">
+        <input type="submit" value="Homepage">
+    </form>
+</center>
+</body>
+</html>
